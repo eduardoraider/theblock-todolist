@@ -29,7 +29,20 @@
     <body class="antialiased">
         <div class="container mt-5">
             <h1>The Block - Todo List</h1>
-
+            @if(session('success'))
+                <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                </div>
+                <script>
+                    setTimeout(function(){
+                        var successAlert = document.getElementById('success-alert');
+                        if(successAlert){
+                            successAlert.classList.remove('show');
+                            successAlert.style.display = 'none';
+                        }
+                    }, 3000);
+                </script>
+            @endif
             <div class="mt-4">
                 <h2>New Task</h2>
                 <form action="{{ route('create') }}" method="POST">
